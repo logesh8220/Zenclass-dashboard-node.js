@@ -1,7 +1,9 @@
 const router = require('express').Router();
+const { getClasses, postClasses, putClasses, putStatus } = require('../Controllers/ClassesController');
 const {getcodekata,postcodekata, putcodekata, getotal, postotal} = require('../Controllers/CodekataController');
 const { getCompletion, postCompletion, putCompletion } = require('../Controllers/CourseCompletionController');
 const { gettask, posttask, puttask } = require('../Controllers/TasksController');
+const { Signin, Login } = require('../Controllers/UsersController');
 const { getWebkata, postWebkata, putwebkata } = require('../Controllers/WebkataController');
 
 
@@ -23,4 +25,10 @@ router.post('/webkata',postWebkata)
 router.get('/completion',getCompletion)
 router.post('/completion',postCompletion)
 router.put('/completion',putCompletion)
+router.get('/classes',getClasses)
+router.post('/classes',postClasses)
+router.put('/classes',putClasses)
+router.put('/classes/Status',putStatus)
+router.post('/signin',Signin)
+router.post('/login',Login)
 module.exports = router
