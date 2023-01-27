@@ -1,4 +1,4 @@
-const Users = require("../Model/Users");
+const Users = require("../Model/Users")
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
@@ -16,9 +16,10 @@ const Signin = async (req, res) => {
     }
 };
 
-const Login = async function (req, res) {
+const Login = async (req, res) => {
     try {
         let user = await Users.findOne({ Email: req.body.Email });
+        console.log(user)
         if (user) {
             let compare = await bcrypt.compare(req.body.Password, user.Password);
             if (compare) {
@@ -30,7 +31,7 @@ const Login = async function (req, res) {
                         console.log(err)
                     } else {
 
-                        res.json(user);
+                        res.status(200).json(user);;
                     }
                 })
 
@@ -41,7 +42,8 @@ const Login = async function (req, res) {
             res.status(401).json({ message: "User not found" });
         }
     } catch (error) {
-        res.status(500).json({ message: "Somthing went wrong" });
+        console.log(error)
+        res.status(500).json({ message: error });
     }
 };
 
