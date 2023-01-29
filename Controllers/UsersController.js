@@ -19,7 +19,6 @@ const Signin = async (req, res) => {
 const Login = async (req, res) => {
     try {
         let user = await Users.findOne({ Email: req.body.Email });
-        console.log(user)
         if (user) {
             let compare = await bcrypt.compare(req.body.Password, user.Password);
             if (compare) {
